@@ -18,11 +18,16 @@ function App() {
     });
   };
 
-  const handleAddProject = (data) => {
+  const handleAddProject = (projectData) => {
+    const newProject = {
+      ...projectData,
+      id: Math.random(),
+    };
+
     setProjectState((prevState) => {
       return {
         ...prevState,
-        projects: [...prevState.projects, data],
+        projects: [...prevState.projects, newProject],
       };
     });
   };
