@@ -1,5 +1,6 @@
 import { useRef, forwardRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
+import Button from './Button';
 
 const Modal = forwardRef(function Modal({ children, buttonLabel }, ref) {
   const dialog = useRef();
@@ -13,10 +14,13 @@ const Modal = forwardRef(function Modal({ children, buttonLabel }, ref) {
   });
 
   return createPortal(
-    <dialog ref={dialog}>
+    <dialog
+      ref={dialog}
+      className='backdrop:bg-stone-900/90 p-4 rounded-md shadow-md'
+    >
       {children}
-      <form action='dialog'>
-        <button>{buttonLabel}</button>
+      <form action='dialog' className='mt-4 text-right'>
+        <Button>{buttonLabel}</Button>
       </form>
     </dialog>,
     document.getElementById('modal-root')
